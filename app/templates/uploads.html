@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block content %}
+<title>Upload new File</title>
+
+<div class="jumbotron">
+	<div class="container text-center">
+		<h1>Upload Data File</h1>
+		<p>Please select a file to upload of which the extention is .csv</p>
+		<form class="form-inline" id="upload_from" action="{{url_for('upload') }}" method="POST" enctype=multipart/form-data>
+			<input type="file" name="file" class="form-control">	
+			<input type="submit" value="Upload" class="btn btn-default">
+		</form>
+	</div>
+</div>
+
+
+{% endblock %}

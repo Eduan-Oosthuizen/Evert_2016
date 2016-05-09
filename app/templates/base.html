@@ -5,34 +5,36 @@
 {% block head %}
 {{ super() }}
 
-<link
-    href="http://cdn.pydata.org/bokeh/release/bokeh-0.11.0.min.css"
-    rel="stylesheet" type="text/css">
-    <script src="http://cdn.pydata.org/bokeh/release/bokeh-0.11.0.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-0.11.0.min.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-widgets-0.11.0.min.css" type="text/css" />
+          
+    <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-0.11.0.min.js"></script>
+    <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-widgets-0.11.0.min.js"></script>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-1.12.3.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/d3.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/science.v1.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap-js/bootstrap.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/Update_Figures.js')}}"></script>
     <script type="text/javascript" src="{{ url_for('main.static', filename='javascript/FirstOrderEyeball.js') }}"></script>
 {% endblock %}
 
 {% block navbar %}
-<div class="navbar navbar-inverse" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">Evert</a>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="/">Home</a></li>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+             <a class="navbar-brand" href="{{ url_for('home') }}">Evert</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ url_for('main.home') }}">Home</a></li>
+                <li><a href="{{ url_for('main.plot') }}">Plot</a></li> 
                 <li><a href="{{ url_for('main.upload') }}">Upload</a></li>
-                <li><a href="{{ url_for('main.plot') }}">Plot</a></li>
+                <li><a href="{{ url_for('main.fit') }}">Fit</a></li>
             </ul>
         </div>
-    </div>
-</div>
+    </nav>
 {% endblock %}
 
 {% block content %}
