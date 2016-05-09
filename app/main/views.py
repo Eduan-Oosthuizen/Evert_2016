@@ -17,8 +17,8 @@ from bokeh.models.tools import BoxSelectTool, PanTool, ResetTool, WheelZoomTool,
 
 
 @main.route('/', methods=['GET'])
-def index():
-    return render_template('index.html')
+def home():
+    return render_template('home.html')
 
 
 @main.route('/upload', methods=['GET', 'POST'])
@@ -121,7 +121,7 @@ def fit():
 @main.route("/plot")
 def plot():        
     #Data import
-    data_file = read_csv("uploads/LPG_Data_Set_1_n.csv", parse_dates = ['timestamp'])
+    data_file = read_csv("static/uploads/LPG_Data_Set_1_n.csv", parse_dates = ['timestamp'])
     data_source = ColumnDataSource(data=dict(x = data_file['timestamp'],y1 = data_file['l1013aspv'],y2 = data_file['l1015asop']))
             
     # Figure plotting function
