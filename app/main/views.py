@@ -232,7 +232,7 @@ def plot():
         scat_plot.xaxis.major_label_text_color = time_scat2.glyph.fill_color
         
         scat_plot.scatter('x', 'y', source=scat_data,size=2)
-            
+        #Callback fucntion
         data_source.callback = CustomJS(args=dict(hist_data=u_hist_source,
                                         kde_d = u_kde_source, sc=scat_data),
                                 code="""
