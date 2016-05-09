@@ -7,7 +7,8 @@ from . import main
 from .forms import UploadForm
 from werkzeug.utils import secure_filename
 from pandas import read_csv
-from numpy import linspace, exp, sin, histogram
+from numpy import linspace, exp, sin, histogram, size, zeros_like
+from scipy.stats import gaussian_kde as gkde
 from pandas import DataFrame
 from bokeh.plotting import figure, gridplot
 from bokeh.embed import components
@@ -121,7 +122,7 @@ def fit():
 @main.route("/plot")
 def plot():        
     #Data import
-    data_file = read_csv("static/uploads/LPG_Data_Set_1_n.csv", parse_dates = ['timestamp'])
+    data_file = read_csv("app/static/uploads/LPG_Data_Set_1_n.csv", parse_dates = ['timestamp'])
     data_source = ColumnDataSource(data=dict(x = data_file['timestamp'],y1 = data_file['l1013aspv'],y2 = data_file['l1015asop']))
             
     # Figure plotting function
