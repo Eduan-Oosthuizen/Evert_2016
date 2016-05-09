@@ -28,7 +28,7 @@ def upload():
     form = UploadForm()
     if form.validate_on_submit():
         filename = secure_filename(form.file.data.filename)
-        form.file.data.save('app/uploads/' + filename)
+        form.file.data.save('app/static/uploads/' + filename)
         session['newUpload'] = filename  # This session library element serves to allow interactive feedback
         flash(filename + ' successfully uploaded to Evert.')
         return redirect(url_for('main.upload'))  # url_for() builds a URL to a specific function, html file irrelevant
