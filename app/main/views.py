@@ -216,7 +216,7 @@ def plot():
         hist_plot.line('x', 'y', source=u_kde_source ,line_color = "red")
         
         #Updateble scatter plot
-        scat_plot = figure(plot_height = 400, plot_width = 400, title = "", x_axis_label = 'l1013aspv', 
+        scat_plot = figure(plot_height = 400, plot_width = 400, title = "", x_axis_label = 'l1015asop', 
                     y_axis_label = 'l1013aspv')
         #scatter plot axis cutomization
         scat_plot.yaxis.axis_line_color = time_scat.glyph.fill_color
