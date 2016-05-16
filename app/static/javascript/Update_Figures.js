@@ -62,18 +62,19 @@ function Update_ALL_Figures(cb_obj, hist_data, kde_d, scat) {
     };
 
     /*kernel density estimator*/
-    /*var h = 4.5, /*4.5 best to fit python kde*/
-    /*    kde = science.stats.kde().sample(d2['y']),
+	if (inds.length > 2) {
+    var h = 0.01, //damping factor
+        kde = science.stats.kde().sample(d2['y']),
         kde_bandwidth_set = d3.values(science.stats.bandwidth),
-        kde_line = kde.bandwidth(h)(d3.range(Math.min(...d2['y']), Math.max(...d2['y']), 0.001));
+        kde_line = kde.bandwidth(h)(d3.range(Math.min(...d2['y']), Math.max(...d2['y']), 0.0001));
 
-
-    for (i=0; i<inds.length; i++) {
+    for (i=0; i<kde_line.length; i++) {
         kde_data['x'].push(kde_line[i][1]);
         kde_data['y'].push(kde_line[i][0]);
     };
-*/
+	}
+
     hist_data.trigger('change');
     scat.trigger('change');
-    //kde_d.trigger('change');
+    kde_d.trigger('change');
 };
