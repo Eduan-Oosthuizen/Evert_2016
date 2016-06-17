@@ -31,7 +31,7 @@ def upload():
         form.file.data.save('app/static/uploads/' + filename)
         session['newUpload'] = filename  # This session library element serves to allow interactive feedback
         flash(filename + ' successfully uploaded to Evert.')
-        return redirect(url_for('main.upload'))  # url_for() builds a URL to a specific function, html file irrelevant
+        return redirect(url_for('main.upload')),filename  # url_for() builds a URL to a specific function, html file irrelevant
     else:                                        # Now main.upload used as the function is relevant to a spec blueprint
         filename = None
     return render_template('upload.html', form=form)
@@ -118,6 +118,30 @@ def fit():
 
     script, div = components(my_plot)  # Break figure up into component HTML to be added to template
     return render_template("int_scatter.html", myScript=script, myDiv=div)
+
+@app.route('/upload_for_Time_Viewer', methods=['GET','POST'])
+def upload():      
+    ALLOWED_EXTENSIONS = set(['csv']) 
+    APP_ROOT = os.path.dirname(os.path.abspath(__file__))
+    UPLOAD_FOLDER = "".join([APP_ROOT, "/uploads"])  
+        
+    def allowed_file(filename):
+            return '.' in filename and \
+               filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS    
+    
+    if not os.path.isdir(UPLOAD_FOLDER):
+        os.mkdir(UPLOAD_FOLDER)
+    
+    if request.method == 'POST':
+        file = request.files['file']
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save("/".join([UPLOAD_FOLDER, filename]))
+            return redirect(url_for('.plot', filename=filename))
+        else:
+			 flash('No file was selected.')
+                        
+    return render_template("uploads.html")
     
 @main.route("/plot")
 def plot():        
