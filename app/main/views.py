@@ -143,7 +143,6 @@ def upload2():
 def plot():        
     #Data import
     filename = request.args.get('filename')
-    session['newUpload'] = filename
     flash(filename + ' successfully uploaded, and data visualized.')
     data_file = read_csv("app/static/uploads/" + filename, parse_dates = ['timestamp'])
     data_source = ColumnDataSource(data=dict(x = data_file['timestamp'],
